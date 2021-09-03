@@ -31,6 +31,6 @@ scan:
 		fi
 
 shell:
-	@docker run --rm -it \
+	@docker run --rm -it --user root \
 		$(DEFAULT_RUN_ARGS) \
 		$(HARBOR)/$(IMAGE):$(VERSION)
