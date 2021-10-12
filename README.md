@@ -17,6 +17,5 @@ openssh-client Dockerfile.
 ```
 make build
 ```
-
 * To run security scan `make scan`
 * To lint the Dockerfile `make lint`
