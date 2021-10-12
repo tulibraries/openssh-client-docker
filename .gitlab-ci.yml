@@ -26,6 +26,9 @@ lint:
 build:
   stage: build
   extends: .build_image
+  services:
+    - name: harbor.k8s.temple.edu/gitlab-ci/docker:20-dind
+      command: ["--tls=false"]
 
 scan:
   stage: scan
