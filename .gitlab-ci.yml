@@ -39,7 +39,13 @@ tag_latest:
   variables:
     TAG: latest
   extends: .tag_image_latest
+  services:
+    - name: harbor.k8s.temple.edu/gitlab-ci/docker:20-dind
+      command: ["--tls=false"]
 
 tag:
   stage: tag
   extends: .tag_image
+  services:
+    - name: harbor.k8s.temple.edu/gitlab-ci/docker:20-dind
+      command: ["--tls=false"]
