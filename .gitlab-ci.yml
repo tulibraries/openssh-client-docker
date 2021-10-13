@@ -1,5 +1,5 @@
 include:
-  - project: "tulibraries/gitlab-ci-templates"
+  - project: "infrastructure-engineering-shared/gitlab-ci-templates"
     file:
       - "lint_docker.yaml"
       - "build_docker.yaml"
@@ -26,9 +26,6 @@ lint:
 build:
   stage: build
   extends: .build_image
-  services:
-    - name: harbor.k8s.temple.edu/gitlab-ci/docker:20-dind
-      command: ["--tls=false"]
 
 scan:
   stage: scan
@@ -39,13 +36,7 @@ tag_latest:
   variables:
     TAG: latest
   extends: .tag_image_latest
-  services:
-    - name: harbor.k8s.temple.edu/gitlab-ci/docker:20-dind
-      command: ["--tls=false"]
 
 tag:
   stage: tag
   extends: .tag_image
-  services:
-    - name: harbor.k8s.temple.edu/gitlab-ci/docker:20-dind
-      command: ["--tls=false"]
