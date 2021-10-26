@@ -15,28 +15,35 @@ variables:
   IMAGE: "tulibraries/openssh-client"
 
 stages:
-  - lint
-  - build
-  - scan
-  - tag
+  #- lint
+  #- build
+  #- scan
+  #- tag
+  - deploy
 
-lint:
-  extends: .lint_docker
+#lint:
+  #extends: .lint_docker
 
-build:
-  stage: build
-  extends: .build_image
+#build:
+  #stage: build
+  #extends: .build_image
 
-scan:
-  stage: scan
-  extends: .scanimage_high
+#scan:
+  #stage: scan
+  #extends: .scanimage_high
 
-tag_latest:
-  stage: tag
-  variables:
-    TAG: latest
-  extends: .tag_image_latest
+#tag_latest:
+  #stage: tag
+  #variables:
+    #TAG: latest
+  #extends: .tag_image_latest
 
-tag:
-  stage: tag
-  extends: .tag_image
+#tag:
+  #stage: tag
+  #extends: .tag_image
+
+deploy:
+  stage: deploy
+  extends: helm_setup
+  script:
+    make deploy
