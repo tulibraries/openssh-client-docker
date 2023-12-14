@@ -24,7 +24,7 @@ lint:
 
 build:
   stage: build
-  extends: .build_image
+  extends: .build_and_scan_image
 
 tag_latest:
   stage: tag
