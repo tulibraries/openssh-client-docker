@@ -2,9 +2,9 @@ include:
   - project: "infrastructure-engineering-shared/gitlab-ci-templates"
     file:
       - "lint_docker.yaml"
-      - "build_docker.yaml"
-      - "security_scan.yaml"
+      - "build_and_scan_docker.yaml"
       - "kubectl_commands.yaml"
+      - "sast_scanning.yaml"
 
 before_script:
   - source .env
@@ -17,7 +17,6 @@ variables:
 stages:
   - lint
   - build
-  - scan
   - tag
 
 lint:
@@ -25,17 +24,13 @@ lint:
 
 build:
   stage: build
-  extends: .build_image
-
-scan:
-  stage: scan
-  extends: .scanimage_high
+  extends: .build_and_scan_image
 
 tag_latest:
   stage: tag
   variables:
     TAG: latest
-  extends: .tag_image_latest
+  extends: .tag_image
 
 tag:
   stage: tag
